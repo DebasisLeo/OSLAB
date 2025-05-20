@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<pthread.h>
 #include<stdlib.h>
+#include<unistd.h>
 struct Args
 {
     /* data */int a,b;
@@ -12,6 +13,7 @@ int a=data->a;
 int b=data->b;
 int *res=malloc(sizeof(int));
 *res=a+b;
+sleep(2);
 pthread_exit(res);
 }
 int main(){
@@ -25,6 +27,7 @@ void* result;
 pthread_create(&T1,NULL,sum,(void*)&data);
 pthread_join(T1,&result);
 printf("this is main\n");
+sleep(2);
 printf("the sum is %d\n",*(int *)result);
 
 }
